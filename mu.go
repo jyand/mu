@@ -7,16 +7,27 @@ import (
         "os"
         "math"
 //        "encoding/csv"
-//       "encoding/json"
-//        "regexp"
+        "regexp"
         "strconv"
+        "strings"
 )
 
-func feval (f func(float64) float64, x float64) float64 {
+func f_eval (f func(float64) float64, x float64) float64 {
         return f(x)
 }
 
-func ftokenizer(op string, x float64) float64 {
+func op_eval (a float64, b float64, op string) float64 {
+        switch op {
+        default: return b
+        case  "+" : return a + b
+        case  "-" : return a - b
+        case  "*" : return a*b
+        case  "/" : return a/b
+        case  "^" : return math.Pow(a, b)
+        }
+}
+
+func ftokenizer(op []string, x float64) float64 {
         /*
         * recursively parse the input function using regular expressions to look for the
         * op tokens: +,-,*,/,^ switch to returnvalue until string terminates
@@ -25,6 +36,7 @@ func ftokenizer(op string, x float64) float64 {
 }
 
 func main() {
+
         /* convert commandline syntax to math pkg syntax */
         f := map[string]func(float64) float64 {
                 /* single-variable, real-valued, differentiable functions */
@@ -36,6 +48,7 @@ func main() {
 
         // testing/debugging
         if x, err := strconv.ParseFloat(os.Args[2], 64) ; err == nil {
-                fmt.Printf("%.2f \n", feval(f[os.Args[1]], x))
+                fmt.Printf("%.2f \n", f_eval(f[os.Args[1]], x))
         }
+
 }
