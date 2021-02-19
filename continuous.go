@@ -5,7 +5,7 @@ import (
 )
 
 func LogBase(b float64, x float64) float64 {
-        return math.Log2(x)/math.Log2(b)
+        return math.Log(x)/math.Log(b)
 }
 
 func Step(x float64) float64 {
