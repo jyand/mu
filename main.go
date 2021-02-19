@@ -16,10 +16,14 @@ func Echo(s []uint64, n uint64) {
 func main() {
         /*fmt.Println(IntDiv(8, 3))
         fmt.Println(Primo(13))
-        fmt.Println(Primo(14))*/
+        fmt.Println(Primo(14))
         l := Primes(499)
         Echo(l, uint64(len(l)))
         fmt.Println()
         l = Composites(499)
         Echo(l, uint64(len(l)))
+        fmt.Println(IntSqrt(7))
+        fmt.Println(IntSqrt(30))*/
+        fmt.Println(Totient(15))
+        fmt.Println(EulersTotient(20))
 }
