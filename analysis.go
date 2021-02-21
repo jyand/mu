@@ -1,5 +1,6 @@
 package main
 
+// ODEs
 func RungeKutta(dy func(float64, float64) float64, tf float64, t float64, y float64, h float64) float64 {
         if tf <= t {
                 return y
@@ -9,7 +10,16 @@ func RungeKutta(dy func(float64, float64) float64, tf float64, t float64, y floa
         return RungeKutta(dy, tf, t, y, h)
 }
 
-func Eulers(dy func(float64, float64) float64, tf float64, ti float64, yi float64, h float64) float64 {
+func Heun(dy func(float64, float64) float64, tf float64, t float64, y float64, h float64) float64 {
+        if tf <= t {
+                return y
+        }
+        y += h/2*(dy(t, y) + dy(t + h, y + h*dy(t, y)))
+        t += h
+        return Heun(dy, tf, t, y, h)
+}
+
+func Euler(dy func(float64, float64) float64, tf float64, ti float64, yi float64, h float64) float64 {
         t := ti
         y := yi
         for t < tf {
@@ -19,6 +29,7 @@ func Eulers(dy func(float64, float64) float64, tf float64, ti float64, yi float6
         return y
 }
 
+// Integrals
 func Trapezoid(f func(float64) float64, a float64, b float64, n int) float64 {
         h := (b - a)/float64(n)
         var sum float64 = 0
@@ -32,7 +43,7 @@ func Trapezoid(f func(float64) float64, a float64, b float64, n int) float64 {
         return h*(sum + (f(a) + f(b))/2)
 }
 
-func Simpsons(f func(float64) float64, a float64, b float64, n int) float64 {
+func Simpson(f func(float64) float64, a float64, b float64, n int) float64 {
         h := (b - a)/float64(2*n)
         x := []float64{}
         sum := []float64{0, 0}
