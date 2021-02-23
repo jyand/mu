@@ -5,7 +5,12 @@ func RungeKutta(dy func(float64, float64) float64, tf float64, t float64, y floa
         if tf <= t {
                 return y
         }
-        y += h*dy(t + h/2, y + h/2*dy(t, y))
+        rk := []float64{h*dy(t, y)}
+        for i := 1 ; i < 3 ; i++ {
+                rk = append(rk, h*dy(t + h/2, y + rk[i-1]/2))
+        }
+        rk = append(rk, h*dy(t + h, y + rk[len(rk)-1]))
+        y += (rk[0] + 2*rk[1] + 2*rk[2] + rk[3])/6
         t += h
         return RungeKutta(dy, tf, t, y, h)
 }
@@ -19,9 +24,17 @@ func Heun(dy func(float64, float64) float64, tf float64, t float64, y float64, h
         return Heun(dy, tf, t, y, h)
 }
 
-func Euler(dy func(float64, float64) float64, tf float64, ti float64, yi float64, h float64) float64 {
-        t := ti
-        y := yi
+func Midpoint(dy func(float64, float64) float64, tf float64, t float64, y float64, h float64) float64 {
+        if tf <= t {
+                return y
+        }
+        y += h*dy(t + h/2, y + h/2*dy(t, y))
+        t += h
+        return Midpoint(dy, tf, t, y, h)
+}
+
+func Euler(dy func(float64, float64) float64, tf float64, t float64, y float64, h float64) float64 {
+        // should be used for comparison/education/curiosity only
         for t < tf {
                 t += h
                 y += h*dy(t, y)

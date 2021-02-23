@@ -4,6 +4,18 @@ import (
         "math"
 )
 
+func Mag(order int8) float64 {
+        return math.Pow(10, float64(order))
+}
+
+func MachineErr() float64 {
+        eps := 1.0
+        for 1.0 + eps*0.5 > 1.0 {
+                eps *= 0.5
+        }
+        return eps
+}
+
 func LogBase(b float64, x float64) float64 {
         return math.Log(x)/math.Log(b)
 }
