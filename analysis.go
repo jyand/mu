@@ -71,3 +71,15 @@ func Simpson(f func(float64) float64, a float64, b float64, n int) float64 {
         }
         return h/3*(f(a) + f(b) + 4*sum[0] + 2*sum[1])
 }
+
+func ForwardDifff(f func(float64) float64, x float64, h float64) float64 {
+        return (f(x + h) - f(x))/h
+}
+
+func CenteredDiff(f func(float64) float64, x float64, h float64) float64 {
+        return (f(x + h) - f(x - h))/2*h
+}
+
+/*func Taylor() {
+        if()
+}*/
