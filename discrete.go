@@ -15,6 +15,16 @@ func IntSqrt(n uint64) uint64 {
         return im(n, 2)
 }
 
+func Fac(n uint) uint {
+        if n == 0 {
+                return 1
+        }
+        if n == 1 {
+                return n
+        }
+        return n*Fac(n-1)
+}
+
 func Euclidean(a uint64, b uint64) uint64 {
         if b == 0 {
                 return a
