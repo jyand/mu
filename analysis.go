@@ -72,6 +72,7 @@ func Simpson(f func(float64) float64, a float64, b float64, n int) float64 {
         return h/3*(f(a) + f(b) + 4*sum[0] + 2*sum[1])
 }
 
+// First Order Differentiation
 func ForwardDifff(f func(float64) float64, x float64, h float64) float64 {
         return (f(x + h) - f(x))/h
 }
@@ -80,6 +81,15 @@ func CenteredDiff(f func(float64) float64, x float64, h float64) float64 {
         return (f(x + h) - f(x - h))/2*h
 }
 
-/*func Taylor() {
-        if()
-}*/
+// Higher Order Differentiation
+func NewtonDiff(f func(float64) float64, x float64, h float64, n uint) float64 {
+        if n == 0 {
+                return f(x)
+        }
+
+        sum := 0
+        for k := 0 ; k <= n ; k++ {
+                sum += math.Pow(-1, float64(k) + float64(n))*Binomial(n, k)*f(x + float64(k)*h)
+        }
+        return sum
+}
