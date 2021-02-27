@@ -15,7 +15,7 @@ func IntSqrt(n uint64) uint64 {
         return im(n, 2)
 }
 
-func Fac(n uint) uint {
+func Fac(n uint64) uint64 {
         if n == 0 {
                 return 1
         }
@@ -23,6 +23,10 @@ func Fac(n uint) uint {
                 return n
         }
         return n*Fac(n-1)
+}
+
+func Binomial(n uint64, k uint64) float64 {
+        return float64(Fac(n))/(float64(Fac(k)*Fac(n-k)))
 }
 
 func Euclidean(a uint64, b uint64) uint64 {
