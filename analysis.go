@@ -1,4 +1,5 @@
-package main
+package mu
+import ( "math" )
 
 // ODEs
 func RungeKutta(dy func(float64, float64) float64, tf float64, t float64, y float64, h float64) float64 {
@@ -82,14 +83,16 @@ func CenteredDiff(f func(float64) float64, x float64, h float64) float64 {
 }
 
 // Higher Order Differentiation
-func NewtonDiff(f func(float64) float64, x float64, h float64, n uint) float64 {
+func NewtonDiff(f func(float64) float64, x float64, h float64, n uint64) float64 {
         if n == 0 {
                 return f(x)
         }
 
-        sum := 0
-        for k := 0 ; k <= n ; k++ {
+        sum := 0.0
+        var k uint64 = 0
+        for k <= n {
                 sum += math.Pow(-1, float64(k) + float64(n))*Binomial(n, k)*f(x + float64(k)*h)
+                k++
         }
         return sum
 }

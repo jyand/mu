@@ -1,8 +1,6 @@
-package main
+package mu
 
-import (
-        "math"
-)
+import ( "math" )
 
 func Mag(order int8) float64 {
         return math.Pow(10, float64(order))
@@ -17,7 +15,7 @@ func MachineErr() float64 {
 }
 
 func LogBase(b float64, x float64) float64 {
-        return math.Log(x)/math.Log(b)
+        return math.Log2(x)/math.Log2(b)
 }
 
 func Sigmoid(x float64) float64 {
