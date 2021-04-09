@@ -1,4 +1,4 @@
-package main
+package mu
 
 func IntDiv(a uint64, b uint64) uint64 {
         return (a - a%b)/b
