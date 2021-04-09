@@ -4,8 +4,7 @@ import (
         "fmt"
         "runtime"
         "math"
-
-        "mu"
+        "github.com/jyand/mu"
 )
 
 func Echo(s []uint64, n uint64) {
