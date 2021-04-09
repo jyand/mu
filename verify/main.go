@@ -4,9 +4,7 @@ import (
         "fmt"
         "runtime"
         "math"
-        "mu/analysis"
-        "mu/continuous"
-        "mu/discrete"
+        "mu/mu"
 )
 
 func Echo(s []uint64, n uint64) {
