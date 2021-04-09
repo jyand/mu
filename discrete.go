@@ -1,4 +1,4 @@
-package mu
+package github.com/jyand/mu
 
 func IntDiv(a uint64, b uint64) uint64 {
         return (a - a%b)/b

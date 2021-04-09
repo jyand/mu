@@ -1,4 +1,4 @@
-package mu
+package github.com/jyand/mu
 import ( "math" )
 
 // ODEs
